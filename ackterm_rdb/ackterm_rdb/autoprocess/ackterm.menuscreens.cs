@@ -317,6 +317,14 @@
 
         #endregion Patient
         #region Charge
+        ChargeSB,
+        ChargeACN,
+        ChargeDR,
+        ChargeRdr,
+        ChargePOS,
+        ChargeEN,
+        ChargeDX,
+        ChargePanel,
 
 
         #endregion Charge
