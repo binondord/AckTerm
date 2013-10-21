@@ -24,7 +24,7 @@ public partial class ackterm
         public void Connect (System.String HostName)
         {
             //prntSome.printSome("Connect");
-            System.Int32           port    = 23;
+            System.Int32           port    = 10010;
             System.Net.IPAddress addrRdb;
             System.Net.IPAddress[] addr = new System.Net.IPAddress[1];
             if (System.Net.IPAddress.TryParse(HostName, out addrRdb))

@@ -55,7 +55,7 @@
 
                 case ElmScrns.ClinicNum:
                     //SendStr("2", true);
-                    SendStr("8", true);
+                    SendStr("2", true);
                     break;
 
                 case ElmScrns.Password:
@@ -171,7 +171,9 @@
                     SendStr("", true, true);
                     break;
                 case ElmScrns.PatientEncOrigRefNo:
-                    SendStr("", true, true);
+                    //SendStr("", true, true);
+                    GoToElem(ElmScrns.QuestionModifyInsInfo);
+                    SendCmdKey(END);
                     break;
                 case ElmScrns.PatientEncStatus:
                     SendStr("", true, true);
@@ -199,19 +201,22 @@
             switch (curForm)
             {
                 case ElmScrns.PatientDemographics:
-                    switch (lastSendCmd)
+                    /*switch (lastSendCmd)
                     {
                         default:
-                            /*GoToElem(ElmScrns.PatientDemographics);
+                            GoToElem(ElmScrns.PatientDemographics);
                             rdbsb1.Insert(0, string.Format("sending space"));
                             SendCmdKey(SPACE);
                             GoToElem(ElmScrns.SearchPatientAccountNum);
                             rdbsb1.Insert(0, string.Format("sending f2"));
-                            SendCmdKey(F2);*/
+                            SendCmdKey(F2);
                             break;
+                    }*/
+                    if (excelpatient.PatientInfoAcctNum.Length != 0)
+                    {
+                        SendStr(excelpatient.PatientInfoAcctNum, true);
                     }
-                    //SendStr("135901",true);
-                    //sample account 45361 ins2 //44974 - hmom //mm1 10705
+                    else SendCmdKey(F2);
                     break;
 
                 //case ElmScrns.PatientGuarantor:

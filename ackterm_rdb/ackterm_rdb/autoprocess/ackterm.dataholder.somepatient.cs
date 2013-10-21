@@ -45,6 +45,45 @@
             public string PatientInfoCategoryVal;
             public string PatientInfoReferralVal;
 
+            public uc_somepatient()
+            {
+                PatientInfoAcctNum = "";
+                PatientInfoGuarrantor = "";
+                PatientInfoChartNum = "";
+                PatientInfoName = "";
+                PatientInfoAddr = "";
+                PatientInfoZip = "";
+                PatientInfoCity = "";
+                PatientInfoState = "";
+                PatientInfoHomePhone = "";
+                PatientInfoCell = "";
+                PatientInfoSex = "";
+                PatientInfoDOB = "";
+                PatientInfoAge = "";
+                PatientInfoMStatus = "";
+                PatientInfoEthnicity = "";
+                PatientInfoSSN = "";
+                PatientInfoDL = "";
+                PatientInfoOccupation = "";
+                PatientInfoEmployer = "";
+                PatientInfoEmployerAddr = "";
+                PatientInfoEmployerZip = "";
+                PatientInfoEmployerCity = "";
+                PatientInfoEmployerState = "";
+                PatientInfoEmployerPhone = "";
+                PatientInfoCategory = "";
+                PatientInfoReferral = "";
+                PatientInfoPCP = "";
+                PatientInfoHospital = "";
+                PatientInfoLanguage = "";
+                PatientInfoEmail = "";
+                PatientInfoRemarks1 = "";
+                PatientInfoRemarks2 = "";
+
+                PatientInfoCategoryVal = "";
+                PatientInfoReferralVal = "";
+            }
+
             public uc_somepatient(
                 string 	strPatientInfoAcctNum,
                 string 	strPatientInfoGuarrantor,

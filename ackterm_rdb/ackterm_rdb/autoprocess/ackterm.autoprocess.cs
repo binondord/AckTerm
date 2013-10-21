@@ -1,9 +1,13 @@
-﻿public partial class ackterm
+﻿using Excel;
+using System.Data;
+using System.IO;
+public partial class ackterm
 {
     private partial class uc_autoprocess
     {
         public System.Collections.Generic.List<uc_somepatient> AllPatients = new System.Collections.Generic.List<uc_somepatient>();
         private uc_somepatient currentpatient;
+        private uc_somepatient excelpatient;
 
         private static System.Int32 acounter = 0;
 
@@ -54,6 +58,17 @@
         const string F2 = "\x1B[N";
         const string SPACE = " ";
 
+        FileStream stream;
+        IExcelDataReader excelReader;
+        DataSet output;
+        DataTable ddtt;
+
+        int numCount;
+        int currentExcelPatient = 0;
+
+        string strPanel;
+        bool contPatientLoop = false;
+
         public uc_autoprocess(
                 System.Int32 aRows,
                 System.Int32 aColumns,
@@ -67,6 +82,15 @@
             mySB = new System.Text.StringBuilder(this.rRows * this.rColumns);
             this.SetSequence();
             myMapTxtCaret = new uc_maptxtcaret(this);
+
+            stream = File.Open(@"c:\temp\urrea.xlsx", FileMode.Open, FileAccess.Read);
+            excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+
+            excelReader.IsFirstRowAsColumnNames = true;
+            output = excelReader.AsDataSet();
+
+            ddtt = output.Tables[0];
+            numCount = ddtt.Rows.Count;
         }
 
         public string start()
@@ -82,6 +106,36 @@
             rdbp1 = this.Parent.Caret.Pos;
             rdbp2 = this.Parent.CharGrid;
             rdbp3 = this.Parent.AttribGrid;
+
+            //conditional traverse here
+
+            do
+            {
+                strPanel = ddtt.Rows[currentExcelPatient]["panel"] + "";
+                if (strPanel.Length == 0)
+                {
+                    contPatientLoop = true;
+                    currentExcelPatient++;
+                }
+                else
+                {
+                    if (!strPanel.Equals("2081"))
+                    {
+                        contPatientLoop = true;
+                        currentExcelPatient++;
+                    }
+                    else contPatientLoop = false;
+                }
+            }
+            while (contPatientLoop);
+
+            //start excel data capture here
+            excelpatient = new uc_somepatient();
+            excelpatient.PatientInfoAcctNum = ddtt.Rows[currentExcelPatient]["acctno"] + "";
+
+            rdbmsg.Insert(0, string.Format("panel:{0} - excelPatCount: {1}\n", strPanel, currentExcelPatient));
+
+            //currentExcelPatient++;
 
             Strfield = retrieveStrData(rdbp2, rdbp3, 0, rdbp1.X, rdbp1.Y);
 

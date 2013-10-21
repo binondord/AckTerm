@@ -212,7 +212,7 @@
                     ));
 
                 //URREA
-                /*
+                
                 defCoordPatientInfo(39, 45);
 
                 Elements.Add(
@@ -228,7 +228,7 @@
                         ElmScrns.PatientInfoCell,
                         true,
                         UseWhat.None
-                    ));*/
+                    ));
 
                 defCoordPatientInfo();
 
@@ -677,6 +677,26 @@
                             new System.Drawing.Point(x_coord + 1, y_coord)
                         ),
                         ElmScrns.QuestionModifyEncInfo,
+                        true,
+                        UseWhat.None
+                    ));
+
+                defCoordPatientInfo(1, 27);
+                y_coord = 23;
+                //54,23
+                Elements.Add(
+                    new uc_maptxtcaretinfo(
+                        PrimeMainMenu.PatientInfo,
+                        new System.Drawing.Point(x_coord, y_coord),
+                        new uc_formpartsinfo("Press any key to continue.",
+                            new System.Drawing.Point(lftColStart, y_coord),
+                            new System.Drawing.Point(lftColEnd, y_coord)
+                        ),
+                        new uc_formpartsinfo("-val-",
+                            new System.Drawing.Point(x_coord, y_coord),
+                            new System.Drawing.Point(x_coord + 1, y_coord)
+                        ),
+                        ElmScrns.PatientInfoPressAnyKey,
                         true,
                         UseWhat.None
                     ));

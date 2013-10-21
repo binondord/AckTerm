@@ -232,6 +232,8 @@
         PatientInfoEmail,
         PatientInfoRemarks1,
         PatientInfoRemarks2,
+        
+        PatientInfoPressAnyKey,
 
         //Patient INS                 
         PatientInsCode,

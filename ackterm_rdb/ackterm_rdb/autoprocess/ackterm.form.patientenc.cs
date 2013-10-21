@@ -706,6 +706,25 @@
                         UseWhat.None
                     ));
 
+                defCoordPatientEnc(false, 54, 23, -1);
+
+                Elements.Add(
+                    new uc_maptxtcaretinfo(
+                        PrimeMainMenu.PatientEnc,
+                        new System.Drawing.Point(x_coord, y_coord),
+                        new uc_formpartsinfo("Status:",
+                            new System.Drawing.Point(lftColStart, y_coord),
+                            new System.Drawing.Point(lftColEnd, y_coord)
+                        ),
+                        new uc_formpartsinfo("-val-",
+                            new System.Drawing.Point(x_coord, y_coord),
+                            new System.Drawing.Point(x_coord + 1, y_coord)
+                        ),
+                        ElmScrns.PatientEncStatus,
+                        true,
+                        UseWhat.Field
+                    ));
+
                 defCoordPatientEnc();
 
                 Elements.Add(

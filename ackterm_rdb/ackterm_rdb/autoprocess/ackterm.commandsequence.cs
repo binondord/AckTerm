@@ -35,6 +35,8 @@
             Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow16, PrimeMainMenu.PatientInfo));//7
             Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow17, PrimeMainMenu.PatientInfo));//7
 
+            Elements.Add(new uc_rdbseq(ElmScrns.PatientInfoPressAnyKey, PrimeMainMenu.PatientInfo));//7
+
             Elements.Add(new uc_rdbseq(ElmScrns.PatientInfoGuarrantor, PrimeMainMenu.PatientInfo));//8
             Elements.Add(new uc_rdbseq(ElmScrns.PatientInfoChartNum, PrimeMainMenu.PatientInfo));//9
             Elements.Add(new uc_rdbseq(ElmScrns.PatientInfoName, PrimeMainMenu.PatientInfo));//10
@@ -217,7 +219,7 @@
             System.Collections.Generic.List<uc_maptxtcaretinfo> rbtmp = new System.Collections.Generic.List<uc_maptxtcaretinfo>();
             Strfield = retrieveStrData(rdbp2, rdbp3, 0, rdbp1.X, rdbp1.Y);
 
-            //process Caret Pos depending on the keyboard event
+            //todo process Caret Pos depending on the keyboard event
             rbtmp = myMapTxtCaret.SearchElems(rdbp1, Strfield, curMenu);
             if (rbtmp.Count == 1)
             {
@@ -226,6 +228,15 @@
 
                 switch (prevForm)
                 {
+                    case ElmScrns.PatientDemographics:
+                        switch (elmOut)
+                        {
+                            case ElmScrns.PatientInfoPressAnyKey:
+                                GoToElem(ElmScrns.PatientInfoGuarrantor);
+                                SendCmdKey();
+                                break;
+                        }
+                        break;
                     case ElmScrns.PatientInsCode:
                         switch (elmOut)
                         {

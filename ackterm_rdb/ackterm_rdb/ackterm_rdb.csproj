@@ -37,6 +37,12 @@
     <StartupObject>ackterm.TermWindow</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>..\..\..\..\rutherford\10192013\medical\medical\bin\Debug\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\..\rutherford\10192013\medical\medical\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="MouseKeyboardActivityMonitor">
       <HintPath>.\MouseKeyboardActivityMonitor.dll</HintPath>
     </Reference>
