@@ -88,7 +88,7 @@ public partial class ackterm
             this.SetSequence();
             myMapTxtCaret = new uc_maptxtcaret(this);
 
-            stream = File.Open(@"c:\temp\urrea.xlsx", FileMode.Open, FileAccess.Read);
+            stream = File.Open(@"c:\temp\urrea_.xlsx", FileMode.Open, FileAccess.Read);
             excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
 
             excelReader.IsFirstRowAsColumnNames = true;
