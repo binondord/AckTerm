@@ -4,13 +4,18 @@
     {
         private partial class uc_maptxtcaret
         {
-            private void menuPatient()
+            private void defCoordPatientMenu(
+                    int xcd = 0,
+                    int ycd = 0,
+                    ElmScrns es = ElmScrns.NotFound,
+                    string strText = ""
+                )
             {
                 Elements.Add(
                     new uc_maptxtcaretinfo(
                         PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Add",
+                        new System.Drawing.Point(xcd, ycd),
+                        new uc_formpartsinfo(strText,
                             new System.Drawing.Point(0, 0),
                             new System.Drawing.Point(0, 0)
                         ),
@@ -18,188 +23,26 @@
                             new System.Drawing.Point(0, 0),
                             new System.Drawing.Point(0, 0)
                         ),
-                        ElmScrns.PatientMenuAdd,
+                        es,
                         false,
                         UseWhat.None
                     ));
+            }
 
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Modify",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuModify,
-                        false,
-                        UseWhat.None
-                    ));
-
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("View",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuView,
-                        false,
-                        UseWhat.None
-                    ));
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Insur Add",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuInsurAdd,
-                        false,
-                        UseWhat.None
-                    ));
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Delete Insur",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuInsurDel,
-                        false,
-                        UseWhat.None
-                    ));
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Labels",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuLabels,
-                        false,
-                        UseWhat.None
-                    ));
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Registration",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuRegistion,
-                        false,
-                        UseWhat.None
-                    ));
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Worker",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuWorker,
-                        false,
-                        UseWhat.None
-                    ));
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Forms",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuForms,
-                        false,
-                        UseWhat.None
-                    ));
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Search Pt",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuSearchPt,
-                        false,
-                        UseWhat.None
-                    ));
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Search Ins",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuSearchIns,
-                        false,
-                        UseWhat.None
-                    ));
-                Elements.Add(
-                    new uc_maptxtcaretinfo(
-                        PrimeMainMenu.Patient,
-                        new System.Drawing.Point(6, 23),
-                        new uc_formpartsinfo("Search Ins",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        new uc_formpartsinfo("-val-",
-                            new System.Drawing.Point(0, 0),
-                            new System.Drawing.Point(0, 0)
-                        ),
-                        ElmScrns.PatientMenuExit,
-                        false,
-                        UseWhat.None
-                    ));
+            private void menuPatient()
+            {
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuAdd, "Add");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuModify, "Modify");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuView, "View");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuInsurAdd, "Insur Add");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuInsurDel, "Delete Insur");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuLabels, "Labels");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuRegistion, "Registration");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuWorker, "Worker");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuForms, "Forms");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuSearchPt, "Search Pt");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuSearchIns, "Search Ins");
+                defCoordPatientMenu(6, 23, ElmScrns.PatientMenuExit, "Exit");
             }
         }
     }

@@ -10,6 +10,7 @@
             private System.Int32 y_coord = 0;
             private System.Int32 lftColStart = 0;
             private System.Int32 lftColEnd = 0;
+            private System.Int32 valwidth = 0;
 
             private uc_autoprocess thisautoproc;
 
@@ -28,6 +29,7 @@
                 formPatientInfo();
                 formPatientIns();
                 formPatientEnc();
+                formCharge();
             }
 
             public void LoadForms(PrimeMainMenu p1, ElmScrns p2)

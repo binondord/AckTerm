@@ -45,6 +45,16 @@
             public string PatientInfoCategoryVal;
             public string PatientInfoReferralVal;
 
+            public string PatientChargeSB;
+            public string PatientChargeAcn;
+            public string PatientChargeDr;
+            public string PatientChargeRdr;
+            public string PatientChargePOS;
+            public string PatientChargeEN;
+            public string PatientChargeDX;
+            public string PatientChargeFrom;
+            public string PatientChargeTo;
+
             public uc_somepatient()
             {
                 PatientInfoAcctNum = "";

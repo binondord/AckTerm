@@ -214,16 +214,29 @@
                     }*/
                     if (excelpatient.PatientInfoAcctNum.Length != 0)
                     {
-                        SendStr(excelpatient.PatientInfoAcctNum, true);
+                        if (autosettings.bStartCharge == true)
+                        {
+                            GoToElem(ElmScrns.ChargeSB);
+                            SendCmdKey(F6);
+                        }
+                        else
+                        {
+                            SendStr(excelpatient.PatientInfoAcctNum, true);
+                        }
                     }
                     else SendCmdKey(F2);
                     break;
 
-                //case ElmScrns.PatientGuarantor:
-                    //break;
-
                 case ElmScrns.QuestionModifyInsInfo:
-                    SendStr("y");
+                    if (autosettings.bTraversePatientIns == false)
+                    {
+                        GoToElem(ElmScrns.QuestionModifyEncInfo);
+                        SendStr("n");
+                    }
+                    else
+                    {
+                        SendStr("y");
+                    }
                     break;
                     
                 /************Fields***********/
@@ -239,7 +252,15 @@
                     {
                         if (DataCapturePatientInfo() == true)
                         {
-                            SendStr("", true, true);
+                            if (autosettings.bTraversePatientInfo == false)
+                            {
+                                GoToElem(ElmScrns.QuestionModifyInsInfo);
+                                SendCmdKey(END);
+                            }
+                            else
+                            {
+                                SendStr("", true, true);
+                            }
                         }
                     }
                     else
@@ -534,8 +555,17 @@
                     break;
 
                 case ElmScrns.QuestionModifyEncInfo:
-                    GoToElem(ElmScrns.PatientEncNum);
-                    SendStr("y");
+                    if (autosettings.bTraversePatientEnc == false)
+                    {
+                        autosettings.bStartCharge = true;
+                        GoToElem(ElmScrns.PatientDemographics);
+                        SendStr("n");
+                    }
+                    else
+                    {
+                        GoToElem(ElmScrns.PatientEncNum);
+                        SendStr("y");
+                    }
                     break;
 
                 case ElmScrns.PatientInsRecordInUse:
@@ -546,6 +576,50 @@
                     //
                     break;
 
+            }
+        }
+
+        private void seqPostingCharges()
+        {
+            switch (curForm)
+            {
+                case ElmScrns.ChargeSB:
+                    if (autosettings.bHasSB)
+                    {
+                        SendStr(excelpatient.PatientChargeSB, true, true);
+                    }
+                    else SendStr("", true);
+                    break;
+                case ElmScrns.ChargeACN:
+                    break;
+                case ElmScrns.ChargeDR:
+                    break;
+                case ElmScrns.ChargeRdr:
+                    break;
+                case ElmScrns.ChargePOS:
+                    break;
+                case ElmScrns.ChargeEN:
+                    break;
+                case ElmScrns.ChargeDX:
+                    break;
+                case ElmScrns.ChargePanel:
+                    break;
+                case ElmScrns.ChargeDrCode:
+                    break;
+                case ElmScrns.ChargeFrom:
+                    break;
+                case ElmScrns.ChargeTo:
+                    break;
+                case ElmScrns.ChargeRdx:
+                    break;
+                case ElmScrns.ChargeProcedure:
+                    break;
+                case ElmScrns.ChargeAmount:
+                    break;
+
+                case ElmScrns.ChargeSBNotice:
+                    SendCmdKey();
+                    break;
             }
         }
 
@@ -761,6 +835,14 @@
                     break;
                 case F2:
                     lastSendCmd = CmdSend.F2;
+                    SenderFnc(comm);
+                    break;
+                case F6:
+                    lastSendCmd = CmdSend.F6;
+                    SenderFnc(comm);
+                    break;
+                case SHIFT_F6:
+                    lastSendCmd = CmdSend.SHIFT_F6;
                     SenderFnc(comm);
                     break;
                 default:

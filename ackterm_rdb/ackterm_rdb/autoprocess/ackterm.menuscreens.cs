@@ -22,7 +22,9 @@
         //Patient Details
         PatientInfo,
         PatientIns,
-        PatientEnc
+        PatientEnc,
+
+        PostingCharges
     }
 
     public enum UseWhat
@@ -46,6 +48,15 @@
         IsOld
     }
 
+    public enum FormScrnOpt
+    {
+        None,
+        PhoneWithParen,
+        InLinewithAnother,
+        Remark2,
+        ChargeSBNotice
+    }
+
     public enum SetPoint
     {
         None,
@@ -60,7 +71,9 @@
         Cursorup,
         Enter,
         Space,
-        F2
+        F2,
+        F6,
+        SHIFT_F6
     }
 
     public enum ElmScrns
@@ -325,7 +338,13 @@
         ChargeEN,
         ChargeDX,
         ChargePanel,
-
+        ChargeDrCode,
+        ChargeFrom,
+        ChargeTo,
+        ChargeRdx,
+        ChargeProcedure,
+        ChargeAmount,
+        ChargeSBNotice,
 
         #endregion Charge
 

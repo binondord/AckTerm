@@ -144,6 +144,21 @@
             Elements.Add(new uc_rdbseq(ElmScrns.PatientEncSchedofBenefits, PrimeMainMenu.PatientEnc)); //98
             Elements.Add(new uc_rdbseq(ElmScrns.PatientEncReferralDate, PrimeMainMenu.PatientEnc)); //99
             Elements.Add(new uc_rdbseq(ElmScrns.PatientEncLastCertification, PrimeMainMenu.PatientEnc)); //100
+
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeSB, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeSBNotice, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeACN, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeDR, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeRdr, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargePOS, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeEN, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeDX, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargePanel, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeDrCode, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeFrom, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeTo, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeProcedure, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargeAmount, PrimeMainMenu.PostingCharges)); //100
         }
 
         public int GetElementIndex(ElmScrns p)
@@ -174,7 +189,7 @@
             {
                 inElement = true;
                 SequenceNum++;
-
+                rdbmsg.Insert(0, string.Format("seqScrn: {0} - a counter: {1}\n", myMaptxtcaretinfo.seqScrn.ToString(), acounter));
                 switch (curMenu)
                 {
                     case PrimeMainMenu.Initial:
@@ -195,6 +210,9 @@
                     case PrimeMainMenu.PatientEnc:
                         seqPatientEnc();
                         break;
+                    case PrimeMainMenu.PostingCharges:
+                        seqPostingCharges();
+                        break;
                     default:
                         //
                         break;
@@ -202,6 +220,7 @@
             }
             else
             {
+                
                 if (acounter == 0 && GetElementIndex(curForm) >= GetElementIndex(ElmScrns.MainPatient))
                 {
                     WhatElementInCurPos();
@@ -235,6 +254,10 @@
                                 GoToElem(ElmScrns.PatientInfoGuarrantor);
                                 SendCmdKey();
                                 break;
+                            case ElmScrns.PatientInfoGuarrantor:
+                                curForm = elmOut;
+                                GoToElem(elmOut);
+                                break;
                         }
                         break;
                     case ElmScrns.PatientInsCode:
@@ -260,6 +283,31 @@
                         //just do something or end
                         GoToElem(ElmScrns.PatientDemographics);
                         SendCmdKey(END);
+                        break;
+                        /*
+                    case ElmScrns.ChargeSBNotice:
+                    case ElmScrns.ChargeSB:
+                        rdbmsg.Insert(0, string.Format("elmOut: {0}\n", elmOut.ToString()));
+                        switch (elmOut)
+                        {
+                            case ElmScrns.ChargeRdr:
+                            //case ElmScrns.ChargePOS:
+                            //case ElmScrns.ChargeDR:
+                                curForm = elmOut;
+                                GoToElem(elmOut);
+                                break;
+                        }
+
+                        break;
+                        */
+                    default:
+                        switch (elmOut)
+                        {
+                            case ElmScrns.PatientInsRecordInUse:
+                                //GoToElem(ElmScrns.PatientInsCode);
+                                //SendCmdKey(END);
+                                break;
+                        }
                         break;
                         
                 }

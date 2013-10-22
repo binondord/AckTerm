@@ -9,6 +9,8 @@ public partial class ackterm
         private uc_somepatient currentpatient;
         private uc_somepatient excelpatient;
 
+        private uc_autosettings autosettings = new uc_autosettings();
+
         private static System.Int32 acounter = 0;
 
         private uc_maptxtcaret myMapTxtCaret;
@@ -56,7 +58,10 @@ public partial class ackterm
         const string END = "\x1B[F";
         const string CURSORUP = "\x1B[A";
         const string F2 = "\x1B[N";
+        const string F6 = "\x1B[R";
         const string SPACE = " ";
+        const string SHIFT_F6 = "\x1B[d";
+        
 
         FileStream stream;
         IExcelDataReader excelReader;
@@ -124,14 +129,31 @@ public partial class ackterm
                         contPatientLoop = true;
                         currentExcelPatient++;
                     }
-                    else contPatientLoop = false;
+                    else
+                    {
+                        autosettings.bTraversePatientInfo = false;
+                        autosettings.bTraversePatientIns = false;
+                        autosettings.bTraversePatientEnc = false;
+                        contPatientLoop = false;
+                    }
                 }
             }
             while (contPatientLoop);
 
             //start excel data capture here
             excelpatient = new uc_somepatient();
-            excelpatient.PatientInfoAcctNum = ddtt.Rows[currentExcelPatient]["acctno"] + "";
+            excelpatient.PatientInfoAcctNum         = ddtt.Rows[currentExcelPatient]["acctno"] + "";
+            //excelpatient.PatientChargeAcn           = ddtt.Rows[currentExcelPatient]["acctno"] + "";
+            excelpatient.PatientChargeSB            = ddtt.Rows[currentExcelPatient]["superbill"] + "";
+            autosettings.bHasSB = (excelpatient.PatientChargeSB.Length != 0) ? true : false;
+            
+            excelpatient.PatientChargeDr            = ddtt.Rows[currentExcelPatient]["dr"] + "";
+            excelpatient.PatientChargeRdr           = ddtt.Rows[currentExcelPatient]["refdr"] + "";
+            excelpatient.PatientChargePOS           = ddtt.Rows[currentExcelPatient]["pos"] + "";
+            //excelpatient.PatientChargeEN          = ddtt.Rows[currentExcelPatient]["superbill"] + "";
+            excelpatient.PatientChargeDX            = ddtt.Rows[currentExcelPatient]["diagnosis"] + "";
+            excelpatient.PatientChargeFrom          = ddtt.Rows[currentExcelPatient]["dos"] + "";
+            //excelpatient.PatientChargeTo            = ddtt.Rows[currentExcelPatient]["superbill"] + "";
 
             rdbmsg.Insert(0, string.Format("panel:{0} - excelPatCount: {1}\n", strPanel, currentExcelPatient));
 
@@ -221,13 +243,13 @@ public partial class ackterm
 
                 prntSome.printSome(curpat, "curpata-", countbmprdb);
                  */
-                rdbmsg.Clear();
+                //rdbmsg.Clear();
                 string curpat = "";
                 int aaacount = currentpatient.myInsurances.Count;
                 for (int m = 0; m < aaacount; m++)
                 {
                     uc_someinsurance tmpInsurance = currentpatient.myInsurances[m];
-                    rdbmsg.Insert(0, string.Format("numins: {0} - m: {1} - code: {2}\n", aaacount, m, tmpInsurance.PatientInsCode));
+                    //rdbmsg.Insert(0, string.Format("numins: {0} - m: {1} - code: {2}\n", aaacount, m, tmpInsurance.PatientInsCode));
 
                     curpat += "PatientInsCode					" + tmpInsurance.PatientInsCode + "\n";
                     curpat += "PatientInsMemNum					" + tmpInsurance.PatientInsMemNum + "\n";

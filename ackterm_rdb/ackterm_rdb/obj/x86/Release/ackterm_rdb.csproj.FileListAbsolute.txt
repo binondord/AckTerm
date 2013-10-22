@@ -78,3 +78,14 @@ F:\git\AckTerm\ackterm_rdb\ackterm_rdb\obj\x86\Release\ackterm_rdb.pdb
 F:\git\AckTerm\ackterm_rdb\ackterm_rdb\bin\Release\Excel.dll
 F:\git\AckTerm\ackterm_rdb\ackterm_rdb\bin\Release\ICSharpCode.SharpZipLib.dll
 F:\git\AckTerm\ackterm_rdb\ackterm_rdb\bin\Release\Excel.pdb
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\bin\Release\ackterm_rdb.exe
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\bin\Release\ackterm_rdb.pdb
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\bin\Release\MouseKeyboardActivityMonitor.dll
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\bin\Release\MySql.Data.dll
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\bin\Release\Excel.pdb
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\obj\x86\Release\ackterm_rdb.csprojResolveAssemblyReference.cache
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\obj\x86\Release\WindowsFormsApplication1.settings.resources
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\obj\x86\Release\WindowsFormsApplication1.Properties.Resources.resources
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\obj\x86\Release\ackterm_rdb.csproj.GenerateResource.Cache
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\obj\x86\Release\ackterm_rdb.exe
+C:\gits\AckTerm\ackterm_rdb\ackterm_rdb\obj\x86\Release\ackterm_rdb.pdb
