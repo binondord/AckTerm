@@ -71,6 +71,7 @@
                 defCoordCharge(1, 3, true, -1, ElmScrns.ChargeProcedure, 6, true, UseWhat.None, "From:");
                 defCoordCharge(1, 3, true, -1, ElmScrns.ChargeAmount, 6, true, UseWhat.None, "From:");
                 defCoordCharge(11, 38, true, 8, ElmScrns.ChargeSBNotice, 58, true, UseWhat.Field, "W", FormScrnOpt.ChargeSBNotice, 69);
+                defCoordCharge(1, 27, true, 23, ElmScrns.ChargePressAnyKey, 26, true, UseWhat.None, "Press any key to continue.");
             }
         }
     }

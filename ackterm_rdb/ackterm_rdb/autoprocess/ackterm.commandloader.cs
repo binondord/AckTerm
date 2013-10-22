@@ -588,17 +588,20 @@
                     {
                         SendStr(excelpatient.PatientChargeSB, true, true);
                     }
-                    else SendStr("", true);
+                    else SendStr("", true, true);
                     break;
                 case ElmScrns.ChargeACN:
                     break;
                 case ElmScrns.ChargeDR:
                     break;
                 case ElmScrns.ChargeRdr:
+                    SendStr("", true, true);
                     break;
                 case ElmScrns.ChargePOS:
+                    SendStr("", true, true);
                     break;
                 case ElmScrns.ChargeEN:
+                    SendStr("", true, true);
                     break;
                 case ElmScrns.ChargeDX:
                     break;
@@ -618,6 +621,14 @@
                     break;
 
                 case ElmScrns.ChargeSBNotice:
+                    SendCmdKey();
+                    break;
+                case ElmScrns.ChargePressAnyKey:
+                    if (autosettings.bHasSB)
+                    {
+                        GoToElem(ElmScrns.ChargeRdr);
+                    }
+                    //else GoToElem(ElmScrns.ChargeRdr); // go somewhere
                     SendCmdKey();
                     break;
             }

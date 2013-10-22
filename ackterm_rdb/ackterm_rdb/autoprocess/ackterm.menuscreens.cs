@@ -345,6 +345,7 @@
         ChargeProcedure,
         ChargeAmount,
         ChargeSBNotice,
+        ChargePressAnyKey,
 
         #endregion Charge
 

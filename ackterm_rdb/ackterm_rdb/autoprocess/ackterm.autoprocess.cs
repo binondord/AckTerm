@@ -1,6 +1,7 @@
 ﻿using Excel;
 using System.Data;
 using System.IO;
+using System.Text.RegularExpressions;
 public partial class ackterm
 {
     private partial class uc_autoprocess
@@ -61,12 +62,13 @@ public partial class ackterm
         const string F6 = "\x1B[R";
         const string SPACE = " ";
         const string SHIFT_F6 = "\x1B[d";
-        
 
+        string[] panels;
         FileStream stream;
         IExcelDataReader excelReader;
         DataSet output;
         DataTable ddtt;
+        bool shouldIncExcelPatientCntr = false;
 
         int numCount;
         int currentExcelPatient = 0;
@@ -88,7 +90,7 @@ public partial class ackterm
             this.SetSequence();
             myMapTxtCaret = new uc_maptxtcaret(this);
 
-            stream = File.Open(@"c:\temp\urrea_.xlsx", FileMode.Open, FileAccess.Read);
+            stream = File.Open(@"c:\temp\urrea.xlsx", FileMode.Open, FileAccess.Read);
             excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
 
             excelReader.IsFirstRowAsColumnNames = true;
@@ -96,6 +98,8 @@ public partial class ackterm
 
             ddtt = output.Tables[0];
             numCount = ddtt.Rows.Count;
+
+            shouldIncExcelPatientCntr = false;
         }
 
         public string start()
@@ -116,6 +120,9 @@ public partial class ackterm
 
             do
             {
+                if (currentExcelPatient >= numCount)
+                    break;
+                
                 strPanel = ddtt.Rows[currentExcelPatient]["panel"] + "";
                 if (strPanel.Length == 0)
                 {
@@ -124,18 +131,29 @@ public partial class ackterm
                 }
                 else
                 {
-                    if (!strPanel.Equals("2081"))
+                    panels = Regex.Split(strPanel, "/");
+                    foreach (string pnl in panels)
                     {
-                        contPatientLoop = true;
+                        switch (pnl)
+                        {
+                                /*
+                            case "2081":
+                                autosettings.bTraversePatientInfo = false;
+                                autosettings.bTraversePatientIns = false;
+                                autosettings.bTraversePatientEnc = false;
+
+                                contPatientLoop = false;
+                                break;
+                                */
+                            default:
+                                contPatientLoop = false; //true to skip
+                                shouldIncExcelPatientCntr = false; //default: true
+                                break;
+                        }
+                    }
+
+                    if(shouldIncExcelPatientCntr)
                         currentExcelPatient++;
-                    }
-                    else
-                    {
-                        autosettings.bTraversePatientInfo = false;
-                        autosettings.bTraversePatientIns = false;
-                        autosettings.bTraversePatientEnc = false;
-                        contPatientLoop = false;
-                    }
                 }
             }
             while (contPatientLoop);

@@ -147,6 +147,8 @@
 
             Elements.Add(new uc_rdbseq(ElmScrns.ChargeSB, PrimeMainMenu.PostingCharges)); //100
             Elements.Add(new uc_rdbseq(ElmScrns.ChargeSBNotice, PrimeMainMenu.PostingCharges)); //100
+            Elements.Add(new uc_rdbseq(ElmScrns.ChargePressAnyKey, PrimeMainMenu.PostingCharges)); //100
+
             Elements.Add(new uc_rdbseq(ElmScrns.ChargeACN, PrimeMainMenu.PostingCharges)); //100
             Elements.Add(new uc_rdbseq(ElmScrns.ChargeDR, PrimeMainMenu.PostingCharges)); //100
             Elements.Add(new uc_rdbseq(ElmScrns.ChargeRdr, PrimeMainMenu.PostingCharges)); //100
