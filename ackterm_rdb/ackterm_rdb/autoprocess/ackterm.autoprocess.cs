@@ -1,4 +1,5 @@
 ﻿using Excel;
+using System;
 using System.Data;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -72,9 +73,13 @@ public partial class ackterm
 
         int numCount;
         int currentExcelPatient = 0;
+        int currentPatientSearchTest = 0;
 
         string strPanel;
         bool contPatientLoop = false;
+
+        string colname;
+        int colLastnameLength = 0;
 
         public uc_autoprocess(
                 System.Int32 aRows,
@@ -90,7 +95,7 @@ public partial class ackterm
             this.SetSequence();
             myMapTxtCaret = new uc_maptxtcaret(this);
 
-            stream = File.Open(@"c:\temp\urrea.xlsx", FileMode.Open, FileAccess.Read);
+            stream = File.Open(@"c:\temp\temp.xlsx", FileMode.Open, FileAccess.Read);
             excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
 
             excelReader.IsFirstRowAsColumnNames = true;
@@ -122,20 +127,25 @@ public partial class ackterm
             {
                 if (currentExcelPatient >= numCount)
                     break;
-                
-                strPanel = ddtt.Rows[currentExcelPatient]["panel"] + "";
-                if (strPanel.Length == 0)
+
+                #region colname: panel
+
+                colname = "panel";
+                if (ddtt.Columns.Contains(colname))
                 {
-                    contPatientLoop = true;
-                    currentExcelPatient++;
-                }
-                else
-                {
-                    panels = Regex.Split(strPanel, "/");
-                    foreach (string pnl in panels)
+                    strPanel = ddtt.Rows[currentExcelPatient][colname] + "";
+                    if (strPanel.Length == 0)
                     {
-                        switch (pnl)
+                        contPatientLoop = true;
+                        currentExcelPatient++;
+                    }
+                    else
+                    {
+                        panels = Regex.Split(strPanel, "/");
+                        foreach (string pnl in panels)
                         {
+                            switch (pnl)
+                            {
                                 /*
                             case "2081":
                                 autosettings.bTraversePatientInfo = false;
@@ -145,36 +155,69 @@ public partial class ackterm
                                 contPatientLoop = false;
                                 break;
                                 */
-                            default:
-                                contPatientLoop = false; //true to skip
-                                shouldIncExcelPatientCntr = false; //default: true
-                                break;
+                                default:
+                                    contPatientLoop = false; //true to skip
+                                    shouldIncExcelPatientCntr = false; //default: true
+                                    break;
+                            }
                         }
-                    }
 
-                    if(shouldIncExcelPatientCntr)
-                        currentExcelPatient++;
+                        if (shouldIncExcelPatientCntr)
+                            currentExcelPatient++;
+                    }
                 }
+
+                #endregion colname: panel
             }
             while (contPatientLoop);
 
+            
+            //else 
+
             //start excel data capture here
             excelpatient = new uc_somepatient();
-            excelpatient.PatientInfoAcctNum         = ddtt.Rows[currentExcelPatient]["acctno"] + "";
-            //excelpatient.PatientChargeAcn           = ddtt.Rows[currentExcelPatient]["acctno"] + "";
-            excelpatient.PatientChargeSB            = ddtt.Rows[currentExcelPatient]["superbill"] + "";
-            autosettings.bHasSB = (excelpatient.PatientChargeSB.Length != 0) ? true : false;
+            excelpatient.PatientInfoAcctNum = assignifcolnameexists("accntno");
+            excelpatient.PatientInfoDOB = assignifcolnameexists("dob", RdbDataType.DateTime);
+            excelpatient.PatientInfoLastName = assignifcolnameexists("lastname");
+            excelpatient.PatientInfoFirstName = assignifcolnameexists("firstname");
+            //excelpatient.PatientChargeAcn = assignifcolnameexists("acctno");
+
+            excelpatient.PatientChargeSB = assignifcolnameexists("superbill");
             
-            excelpatient.PatientChargeDr            = ddtt.Rows[currentExcelPatient]["dr"] + "";
-            excelpatient.PatientChargeRdr           = ddtt.Rows[currentExcelPatient]["refdr"] + "";
-            excelpatient.PatientChargePOS           = ddtt.Rows[currentExcelPatient]["pos"] + "";
-            //excelpatient.PatientChargeEN          = ddtt.Rows[currentExcelPatient]["superbill"] + "";
-            excelpatient.PatientChargeDX            = ddtt.Rows[currentExcelPatient]["diagnosis"] + "";
-            excelpatient.PatientChargeFrom          = ddtt.Rows[currentExcelPatient]["dos"] + "";
-            //excelpatient.PatientChargeTo            = ddtt.Rows[currentExcelPatient]["superbill"] + "";
+            excelpatient.PatientChargeDr            = assignifcolnameexists("dr");
+            excelpatient.PatientChargeRdr           = assignifcolnameexists("refdr");
+            excelpatient.PatientChargePOS           = assignifcolnameexists("pos");
+            //excelpatient.PatientChargeEN          = assignifcolnameexists("superbill");
+            excelpatient.PatientChargeDX            = assignifcolnameexists("diagnosis");
+            excelpatient.PatientChargeFrom          = assignifcolnameexists("dos");
+            //excelpatient.PatientChargeTo            = assignifcolnameexists("superbill");
 
-            rdbmsg.Insert(0, string.Format("panel:{0} - excelPatCount: {1}\n", strPanel, currentExcelPatient));
+            
+            setSettings();
 
+            if (autosettings.bSearchPatientNotFound)
+            {
+                switch (curForm)
+                {
+                    case ElmScrns.SearchPatientAccountNum:
+                    case ElmScrns.SearchPatientName:
+                    case ElmScrns.SearchPatientDOB:
+                        if (autosettings.setSearchTest(currentPatientSearchTest))
+                        {
+                            currentPatientSearchTest++;
+                            if (autosettings.bSearchPlayWithLastName)
+                            {
+                                //excelpatient.PatientInfoLastName.Sub
+                            }
+                        }
+                        else
+                        {
+                            currentExcelPatient++;
+                        }
+                        break;
+                }
+            }
+            rdbmsg.Insert(0, string.Format("currentPatientSearchTest:{0} - currentExcelPatient:{1} - dob:{2}\n", currentPatientSearchTest, currentExcelPatient, autosettings.bHasDOB));
             //currentExcelPatient++;
 
             Strfield = retrieveStrData(rdbp2, rdbp3, 0, rdbp1.X, rdbp1.Y);

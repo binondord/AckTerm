@@ -17,23 +17,26 @@
             
             Elements.Add(new uc_rdbseq(ElmScrns.PatientDemographics, PrimeMainMenu.PatientInfo));//7
 
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientAccountNum, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientName, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientDOB, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientCategory, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientSSN, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow6, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow7, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow8, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow9, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow10, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow11, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow12, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow13, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow14, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow15, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow16, PrimeMainMenu.PatientInfo));//7
-            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow17, PrimeMainMenu.PatientInfo));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientAccountNum, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientName, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientDOB, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientCategory, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientSSN, PrimeMainMenu.SearchPatient));//7
+
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientNotFound, PrimeMainMenu.SearchPatient));//7
+
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow6, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow7, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow8, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow9, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow10, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow11, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow12, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow13, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow14, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow15, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow16, PrimeMainMenu.SearchPatient));//7
+            Elements.Add(new uc_rdbseq(ElmScrns.SearchPatientResRow17, PrimeMainMenu.SearchPatient));//7
 
             Elements.Add(new uc_rdbseq(ElmScrns.PatientInfoPressAnyKey, PrimeMainMenu.PatientInfo));//7
 
@@ -191,7 +194,7 @@
             {
                 inElement = true;
                 SequenceNum++;
-                rdbmsg.Insert(0, string.Format("seqScrn: {0} - a counter: {1}\n", myMaptxtcaretinfo.seqScrn.ToString(), acounter));
+                //rdbmsg.Insert(0, string.Format("seqScrn: {0} - a counter: {1}\n", myMaptxtcaretinfo.seqScrn.ToString(), acounter));
                 switch (curMenu)
                 {
                     case PrimeMainMenu.Initial:
@@ -214,6 +217,9 @@
                         break;
                     case PrimeMainMenu.PostingCharges:
                         seqPostingCharges();
+                        break;
+                    case PrimeMainMenu.SearchPatient:
+                        seqSearchPatient();
                         break;
                     default:
                         //

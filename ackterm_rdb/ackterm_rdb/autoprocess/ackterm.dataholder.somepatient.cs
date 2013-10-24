@@ -1,4 +1,5 @@
-﻿public partial class ackterm
+﻿using System;
+public partial class ackterm
 {
     private partial class uc_autoprocess
     {
@@ -20,7 +21,7 @@
             public string 	PatientInfoHomePhone;
             public string 	PatientInfoCell;
             public string 	PatientInfoSex;
-            public string 	PatientInfoDOB;
+            public DateTime	PatientInfoDOB;
             public string 	PatientInfoAge;
             public string 	PatientInfoMStatus;
             public string 	PatientInfoEthnicity;
@@ -45,6 +46,9 @@
             public string PatientInfoCategoryVal;
             public string PatientInfoReferralVal;
 
+            public string PatientInfoLastName;
+            public string PatientInfoFirstName;
+
             public string PatientChargeSB;
             public string PatientChargeAcn;
             public string PatientChargeDr;
@@ -68,7 +72,7 @@
                 PatientInfoHomePhone = "";
                 PatientInfoCell = "";
                 PatientInfoSex = "";
-                PatientInfoDOB = "";
+                PatientInfoDOB = DateTime.Now;
                 PatientInfoAge = "";
                 PatientInfoMStatus = "";
                 PatientInfoEthnicity = "";
@@ -106,7 +110,7 @@
                 string 	strPatientInfoHomePhone,
                 string 	strPatientInfoCell,
                 string 	strPatientInfoSex,
-                string 	strPatientInfoDOB,
+                DateTime datePatientInfoDOB,
                 string 	strPatientInfoAge,
                 string 	strPatientInfoMStatus,
                 string 	strPatientInfoEthnicity,
@@ -142,7 +146,7 @@
                     PatientInfoHomePhone = strPatientInfoHomePhone;
                     PatientInfoCell = strPatientInfoCell;
                     PatientInfoSex = strPatientInfoSex;
-                    PatientInfoDOB = strPatientInfoDOB;
+                    PatientInfoDOB = datePatientInfoDOB;
                     PatientInfoAge = strPatientInfoAge;
                     PatientInfoMStatus = strPatientInfoMStatus;
                     PatientInfoEthnicity = strPatientInfoEthnicity;

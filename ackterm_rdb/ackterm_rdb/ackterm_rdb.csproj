@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="autoprocess\ackterm.autoprocess.cs" />
+    <Compile Include="autoprocess\ackterm.autoprocess.functions.cs" />
     <Compile Include="autoprocess\ackterm.autosettings.cs" />
     <Compile Include="autoprocess\ackterm.form.charge.cs" />
     <Compile Include="autoprocess\ackterm.commandloader.cs" />

@@ -55,7 +55,7 @@
 
                 case ElmScrns.ClinicNum:
                     //SendStr("2", true);
-                    SendStr("2", true);
+                    SendStr("8", true);
                     break;
 
                 case ElmScrns.Password:
@@ -212,9 +212,9 @@
                             SendCmdKey(F2);
                             break;
                     }*/
-                    if (excelpatient.PatientInfoAcctNum.Length != 0)
+                    if (autosettings.bHasAccountNo)
                     {
-                        if (autosettings.bStartCharge == true)
+                        if (autosettings.bStartCharge)
                         {
                             GoToElem(ElmScrns.ChargeSB);
                             SendCmdKey(F6);
@@ -224,7 +224,11 @@
                             SendStr(excelpatient.PatientInfoAcctNum, true);
                         }
                     }
-                    else SendCmdKey(F2);
+                    else if (autosettings.bDoneSearch == false)
+                    {
+                        autosettings.bInSearch = true;
+                        SendCmdKey(F2);
+                    }
                     break;
 
                 case ElmScrns.QuestionModifyInsInfo:
@@ -363,15 +367,27 @@
                     GoToElem(ElmScrns.PatientInfoGuarrantor);
                     SendStr("", true, true);
                     break;
+            }
+        }
 
+        public void seqSearchPatient()
+        {
+            switch (curForm)
+            {
                 case ElmScrns.SearchPatientAccountNum:
-                    SendStr("", true, true);
+                    if(autosettings.bHasAccountNo)
+                        SendStr(excelpatient.PatientInfoAcctNum, true, true);
+                    else SendStr("", true, true);
                     break;
                 case ElmScrns.SearchPatientName:
-                    SendStr("", true, true);
+                    if (autosettings.bHasLastName)
+                        SendStr("*"+excelpatient.PatientInfoLastName, true, true);
+                    else SendStr("", true, true);
                     break;
                 case ElmScrns.SearchPatientDOB:
-                    SendStr("", true, true);
+                    if (autosettings.bHasDOB)
+                        SendStr(excelpatient.PatientInfoDOB.ToString("MM/dd/yyyy"), true, true);
+                    else SendStr("", true, true);
                     break;
                 case ElmScrns.SearchPatientCategory:
                     SendStr("", true, true);
@@ -380,7 +396,17 @@
                     SendStr("", true, true);
                     break;
 
+                case ElmScrns.SearchPatientNotFound:
+                    autosettings.bSearchPatientNotFound = true;
+                    GoToElem(ElmScrns.SearchPatientAccountNum);
+                    SendCmdKey();
+                    break;
+
                 case ElmScrns.SearchPatientResRow6:
+                    if (autosettings.bInSearch)
+                    {
+
+                    }
                     //SendStr("", true, true);
                     break;
                 case ElmScrns.SearchPatientResRow7:

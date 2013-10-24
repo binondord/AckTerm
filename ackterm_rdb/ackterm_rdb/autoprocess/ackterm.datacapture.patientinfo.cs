@@ -1,4 +1,5 @@
-﻿public partial class ackterm
+﻿using System;
+public partial class ackterm
 {
     private partial class uc_autoprocess
     {
@@ -15,7 +16,7 @@
             string 	strPatientInfoHomePhone= "";
             string 	strPatientInfoCell= "";
             string 	strPatientInfoSex= "";
-            string 	strPatientInfoDOB= "";
+            DateTime datePatientInfoDOB = DateTime.Now;
             string 	strPatientInfoAge= "";
             string 	strPatientInfoMStatus= "";
             string 	strPatientInfoEthnicity= "";
@@ -128,7 +129,7 @@
                         //countbmprdb++;
                         break;
                     case ElmScrns.PatientInfoDOB:
-                        strPatientInfoDOB = tmpstring;
+                        datePatientInfoDOB = Convert.ToDateTime(tmpstring);
                         //prntSome.printSome(tmpstring, "rdbp-strPatientInfoDOB", countbmprdb);
                         //countbmprdb++;
                         break;
@@ -267,7 +268,7 @@
                                     strPatientInfoHomePhone,
                                     strPatientInfoCell,
                                     strPatientInfoSex,
-                                    strPatientInfoDOB,
+                                    datePatientInfoDOB,
                                     strPatientInfoAge,
                                     strPatientInfoMStatus,
                                     strPatientInfoEthnicity,

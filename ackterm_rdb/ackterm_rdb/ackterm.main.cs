@@ -689,7 +689,7 @@ public partial class ackterm
             //prntSome.printSome("OnClickConnect");
             HostWindow hostWindow = new HostWindow ();
             //hostWindow.HostName.Text = "192.168.3.85";
-            hostWindow.HostName.Text = "5.8.67.246";
+            hostWindow.HostName.Text = "5.8.68.217";
             this.runOffline = true;
             System.Windows.Forms.DialogResult RetVal = hostWindow.ShowDialog (this);
             

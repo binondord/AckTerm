@@ -20,11 +20,18 @@
         Main,
 
         //Patient Details
+        SearchPatient,
         PatientInfo,
         PatientIns,
         PatientEnc,
 
         PostingCharges
+    }
+
+    public enum RdbDataType
+    {
+        String,
+        DateTime
     }
 
     public enum UseWhat
@@ -207,6 +214,8 @@
         SearchPatientResRow15,
         SearchPatientResRow16,
         SearchPatientResRow17,
+
+        SearchPatientNotFound,
 
         
 
